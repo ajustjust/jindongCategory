@@ -14,6 +14,11 @@
 		FC4A66791B7F7E8900CEE2FB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC4A66781B7F7E8900CEE2FB /* Images.xcassets */; };
 		FC4A667C1B7F7E8900CEE2FB /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FC4A667A1B7F7E8900CEE2FB /* LaunchScreen.xib */; };
 		FC4A66881B7F7E8900CEE2FB /* jindongCategoryViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4A66871B7F7E8900CEE2FB /* jindongCategoryViewTests.m */; };
+		FC4A66971B7F7FBC00CEE2FB /* LeftCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4A66961B7F7FBC00CEE2FB /* LeftCategoryController.m */; };
+		FC4A669A1B7F817300CEE2FB /* LeftCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4A66991B7F817300CEE2FB /* LeftCategoryCell.m */; };
+		FC4A669D1B7F830100CEE2FB /* LeftCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = FC4A669C1B7F830100CEE2FB /* LeftCategoryModel.m */; };
+		FC5A4EE91B82033A002F1B1C /* ContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5A4EE81B82033A002F1B1C /* ContentController.m */; };
+		FC5A4EEF1B820F11002F1B1C /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FC5A4EEE1B820F11002F1B1C /* ItemCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,16 @@
 		FC4A66811B7F7E8900CEE2FB /* jindongCategoryViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jindongCategoryViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4A66861B7F7E8900CEE2FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FC4A66871B7F7E8900CEE2FB /* jindongCategoryViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = jindongCategoryViewTests.m; sourceTree = "<group>"; };
+		FC4A66951B7F7FBC00CEE2FB /* LeftCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCategoryController.h; sourceTree = "<group>"; };
+		FC4A66961B7F7FBC00CEE2FB /* LeftCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftCategoryController.m; sourceTree = "<group>"; };
+		FC4A66981B7F817300CEE2FB /* LeftCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCategoryCell.h; sourceTree = "<group>"; };
+		FC4A66991B7F817300CEE2FB /* LeftCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftCategoryCell.m; sourceTree = "<group>"; };
+		FC4A669B1B7F830100CEE2FB /* LeftCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftCategoryModel.h; sourceTree = "<group>"; };
+		FC4A669C1B7F830100CEE2FB /* LeftCategoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftCategoryModel.m; sourceTree = "<group>"; };
+		FC5A4EE71B82033A002F1B1C /* ContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentController.h; sourceTree = "<group>"; };
+		FC5A4EE81B82033A002F1B1C /* ContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentController.m; sourceTree = "<group>"; };
+		FC5A4EED1B820F11002F1B1C /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		FC5A4EEE1B820F11002F1B1C /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +96,7 @@
 		FC4A666A1B7F7E8900CEE2FB /* jindongCategoryView */ = {
 			isa = PBXGroup;
 			children = (
+				FC4A66911B7F7EE000CEE2FB /* class */,
 				FC4A666F1B7F7E8900CEE2FB /* AppDelegate.h */,
 				FC4A66701B7F7E8900CEE2FB /* AppDelegate.m */,
 				FC4A66721B7F7E8900CEE2FB /* ViewController.h */,
@@ -117,6 +133,47 @@
 				FC4A66861B7F7E8900CEE2FB /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FC4A66911B7F7EE000CEE2FB /* class */ = {
+			isa = PBXGroup;
+			children = (
+				FC4A66921B7F7EE000CEE2FB /* Controller */,
+				FC4A66931B7F7EE000CEE2FB /* Model */,
+				FC4A66941B7F7EE000CEE2FB /* View */,
+			);
+			path = class;
+			sourceTree = "<group>";
+		};
+		FC4A66921B7F7EE000CEE2FB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FC4A66951B7F7FBC00CEE2FB /* LeftCategoryController.h */,
+				FC4A66961B7F7FBC00CEE2FB /* LeftCategoryController.m */,
+				FC5A4EE71B82033A002F1B1C /* ContentController.h */,
+				FC5A4EE81B82033A002F1B1C /* ContentController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FC4A66931B7F7EE000CEE2FB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FC4A669B1B7F830100CEE2FB /* LeftCategoryModel.h */,
+				FC4A669C1B7F830100CEE2FB /* LeftCategoryModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FC4A66941B7F7EE000CEE2FB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FC5A4EED1B820F11002F1B1C /* ItemCell.h */,
+				FC5A4EEE1B820F11002F1B1C /* ItemCell.m */,
+				FC4A66981B7F817300CEE2FB /* LeftCategoryCell.h */,
+				FC4A66991B7F817300CEE2FB /* LeftCategoryCell.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +276,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4A669D1B7F830100CEE2FB /* LeftCategoryModel.m in Sources */,
+				FC5A4EE91B82033A002F1B1C /* ContentController.m in Sources */,
+				FC4A66971B7F7FBC00CEE2FB /* LeftCategoryController.m in Sources */,
 				FC4A66741B7F7E8900CEE2FB /* ViewController.m in Sources */,
+				FC5A4EEF1B820F11002F1B1C /* ItemCell.m in Sources */,
+				FC4A669A1B7F817300CEE2FB /* LeftCategoryCell.m in Sources */,
 				FC4A66711B7F7E8900CEE2FB /* AppDelegate.m in Sources */,
 				FC4A666E1B7F7E8900CEE2FB /* main.m in Sources */,
 			);
@@ -416,6 +478,7 @@
 				FC4A668D1B7F7E8900CEE2FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC4A668E1B7F7E8900CEE2FB /* Build configuration list for PBXNativeTarget "jindongCategoryViewTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +487,7 @@
 				FC4A66901B7F7E8900CEE2FB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

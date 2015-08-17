@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  LeftCategoryModel.m
 //  jindongCategoryView
 //
 //  Created by MAC-yanghua on 15/8/15.
 //  Copyright (c) 2015年 MAC-yanghua. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "LeftCategoryModel.h"
 
-@interface ViewController : UIViewController
-@property (nonatomic, assign) CGFloat leftWidth;
+@implementation LeftCategoryModel
 
 @end
-
