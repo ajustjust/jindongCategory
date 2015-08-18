@@ -36,7 +36,7 @@
 
 -(UILabel *)titleLable{
     if(!_titleLable){
-        _titleLable = [[UILabel alloc]init];
+       self.titleLable = [[UILabel alloc]init];
         [self.contentView addSubview:_titleLable];
     }
     return _titleLable;
@@ -55,9 +55,9 @@
     self.bgselectView.backgroundColor =[UIColor whiteColor];
     self.selectedBackgroundView = self.bgselectView;
     self.titleLable.textAlignment = NSTextAlignmentCenter;
-  
-        self.titleLable.textColor = self.leftItem.titleColor;
- 
+   
+   
+    
     }
       
 
@@ -66,7 +66,7 @@
 
     if(!_bgselectView){
 
-        _bgselectView = [[UIView alloc]init];
+       self.bgselectView = [[UIView alloc]init];
 
     }
     return _bgselectView;
@@ -76,9 +76,13 @@
 -(void)setLeftItem:(LeftCategoryModel *)leftItem
 {
     _leftItem = leftItem;
-    self.titleLable.text = _leftItem.name;
+    self.titleLable.text = leftItem.name;
 
-    
+    if (leftItem.isSelected==NO) {
+        self.titleLable.textColor = [UIColor blackColor];
+    }else{
+        self.titleLable.textColor = [UIColor redColor];
+    }
 
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

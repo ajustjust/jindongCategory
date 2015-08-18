@@ -11,6 +11,6 @@
 @interface LeftCategoryModel : NSObject
 
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) UIColor *titleColor;
+@property (nonatomic, assign ,getter=isSelected) BOOL isSelected;
 
 @end

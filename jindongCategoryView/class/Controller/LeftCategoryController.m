@@ -68,16 +68,14 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    // 1.取消选中这行
-    //[tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-
+   
     LeftCategoryCell * cell=(LeftCategoryCell*)[tableView cellForRowAtIndexPath:indexPath];
     cell.titleLable.textColor=[UIColor redColor];
    
     // 2.给cell传递模型数据
     LeftCategoryModel *leftItem = self.leftCategoryArray[indexPath.row];
-    leftItem.titleColor =cell.titleLable.textColor;
+    leftItem.isSelected = YES;
+    cell.leftItem = leftItem;
 
  [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
     
@@ -86,11 +84,14 @@
 
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+
     LeftCategoryCell * cell=(LeftCategoryCell*)[tableView cellForRowAtIndexPath:indexPath];
     cell.titleLable.textColor=[UIColor blackColor];
     // 2.给cell传递模型数据
     LeftCategoryModel *leftItem = self.leftCategoryArray[indexPath.row];
-    leftItem.titleColor =cell.titleLable.textColor;
+    leftItem.isSelected = NO;
+    cell.leftItem = leftItem;
 }
 /*
 // Override to support conditional editing of the table view.
