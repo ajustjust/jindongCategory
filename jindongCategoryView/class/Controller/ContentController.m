@@ -106,9 +106,7 @@ static NSString * const reuseIdentifier = @"Cell";
 //设置元素大小
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    
-    
+   
     //NSLog(@"%f",(kDeviceHeight-88-49)/4.0);
     
     return CGSizeMake((MainScreenWidth-100-50)/3,(MainScreenWidth-100-20)/3+20);
@@ -125,11 +123,48 @@ static NSString * const reuseIdentifier = @"Cell";
 //    DetailVideoViewController *detailVC = [[DetailVideoViewControlleralloc]init];
 //    
 //    [self.navigationController pushViewController:detailVCanimated:YES];
-//    
-
+//
     
 }
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+
+{
+    
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader){
+        
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerview" forIndexPath:indexPath];
+        
+        
+        headerView.backgroundColor= [UIColor blueColor];
+        
+       // UIImage *headerImage = [UIImage imageNamed:@"header_banner.png"];
+        
+      //  headerView.b = headerImage;
+        
+        reusableview = headerView;
+        
+    }
+    
+//    if (kind == UICollectionElementKindSectionFooter){
+//        
+//        UICollectionReusableView *footerview = [collectionView dequeueResuableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
+//        
+//        reusableview = footerview;
+//        
+//    }
+    
+    return reusableview;
+    
+    
+    
+}
+
 #pragma mark <UICollectionViewDelegate>
+
+
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
