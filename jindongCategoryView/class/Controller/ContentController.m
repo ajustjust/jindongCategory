@@ -7,12 +7,18 @@
 //
 
 #import "ContentController.h"
-#import "ItemCell.h"
-@interface ContentController ()
+#import "RightCententCell.h"
+#import "RightContentModel.h"
 
 #define MainScreenWidth [UIScreen mainScreen].bounds.size.width
-
 #define MainScreenHight [UIScreen mainScreen].bounds.size.height
+
+
+
+@interface ContentController ()
+/** 最后展示在页面的数据 */
+@property (strong, nonatomic) NSMutableArray *listArray;
+
 
 @end
 
@@ -36,6 +42,16 @@ static NSString * const reuseIdentifier = @"Cell";
     return [self initWithCollectionViewLayout:layout];
 }
 
+
+#pragma mark - 数据相关
+
+- (NSMutableArray *)goodsListArray
+{
+    if (!_listArray) {
+        self.listArray = [NSMutableArray array];
+    }
+    return _listArray;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -79,8 +95,20 @@ static NSString * const reuseIdentifier = @"Cell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
    // static NSString *identify = @"cell";
-    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor redColor];
+//    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+//    cell.backgroundColor = [UIColor redColor];
+
+    static NSString *identify = @"cell";
+    RightCententCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
+    [cell sizeToFit];
+    if (!cell) {
+        NSLog(@"无法创建CollectionViewCell时打印，自定义的cell就不可能进来了。");
+    }
+    
+    RightContentModel*rightContentModel = self.listArray[indexPath.row];
+    //设置数据源
+    cell.rightContentModel =rightContentModel;
+    
     return cell;
 }
 
@@ -127,27 +155,27 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+//
+//{
+//    
+//    UICollectionReusableView *reusableview = nil;
+//    
+//    if (kind == UICollectionElementKindSectionHeader){
+//        
+//        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerview" forIndexPath:indexPath];
+//        
+//        
+//        headerView.backgroundColor= [UIColor blueColor];
+//        
+//       // UIImage *headerImage = [UIImage imageNamed:@"header_banner.png"];
+//        
+//      //  headerView.b = headerImage;
+//        
+//        reusableview = headerView;
+//        
+//    }
 
-{
-    
-    UICollectionReusableView *reusableview = nil;
-    
-    if (kind == UICollectionElementKindSectionHeader){
-        
-        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerview" forIndexPath:indexPath];
-        
-        
-        headerView.backgroundColor= [UIColor blueColor];
-        
-       // UIImage *headerImage = [UIImage imageNamed:@"header_banner.png"];
-        
-      //  headerView.b = headerImage;
-        
-        reusableview = headerView;
-        
-    }
-    
 //    if (kind == UICollectionElementKindSectionFooter){
 //        
 //        UICollectionReusableView *footerview = [collectionView dequeueResuableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
@@ -156,16 +184,25 @@ static NSString * const reuseIdentifier = @"Cell";
 //        
 //    }
     
-    return reusableview;
-    
-    
-    
+//    return reusableview;
+//    
+//    
+//    
+//}
+//定义每个UICollectionView 纵向的间距
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0;
 }
 
+
+
+
+//返回这个UICollectionView是否可以被选择
+-(BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
 #pragma mark <UICollectionViewDelegate>
-
-
-
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
