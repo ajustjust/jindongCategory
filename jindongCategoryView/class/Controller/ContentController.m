@@ -13,7 +13,8 @@
 #define MainScreenWidth [UIScreen mainScreen].bounds.size.width
 #define MainScreenHight [UIScreen mainScreen].bounds.size.height
 
-
+#define fDeviceWidth ([UIScreen mainScreen].bounds.size.width)
+#define fDeviceHeight ([UIScreen mainScreen].bounds.size.height-StatusBarHeight)
 
 @interface ContentController ()
 /** 最后展示在页面的数据 */
@@ -34,12 +35,43 @@ static NSString * const reuseIdentifier = @"Cell";
 - (id)init
 {
     // UICollectionViewFlowLayout的初始化
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.itemSize = CGSizeMake(80, 80);
-    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
-    layout.minimumInteritemSpacing = 20;
-    layout.minimumLineSpacing = 20;
-    return [self initWithCollectionViewLayout:layout];
+//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    layout.itemSize = CGSizeMake(80, 80);
+//    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+//    layout.minimumInteritemSpacing = 20;
+//    layout.minimumLineSpacing = 20;
+    
+    
+    
+    
+    /**
+     2、在Controller.m创建UICollectionView。需要使用UICollectionViewFlowLayout来创建，使用方法- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout;如果只用普通的init方法，是实现不了的。
+     */
+    
+    float height = 0;//顶部高度
+    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
+    flowLayout.headerReferenceSize = CGSizeMake(fDeviceWidth, height+10);//头部
+//    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width,self.frame.size.height) collectionViewLayout:flowLayout];
+    //self.collectionView.backgroundColor=blackgroundColor;
+    
+//    // 3、代理授权并添加至视图。
+//    self.collectionView.delegate = self;
+//    self.collectionView.dataSource = self;
+  //  [self addSubview:self.collectionView];
+    
+    
+    
+    
+    //注册cell和ReusableView（相当于头部）1、注册CollectionViewCell，添加cell需要在这里实现。方法：- (void)registerClass:(Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
+//    [self.collectionView registerClass:[YXTCollectionCell class] forCellWithReuseIdentifier:@"cell"];
+//    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ReusableView"];
+    
+    
+    
+    
+    
+    return [self initWithCollectionViewLayout:flowLayout];
 }
 
 
@@ -62,8 +94,8 @@ static NSString * const reuseIdentifier = @"Cell";
      */
     self.collectionView.backgroundColor = [UIColor whiteColor];
     // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
-    
+    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
+  
     // Do any additional setup after loading the view.
 }
 
