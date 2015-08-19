@@ -10,7 +10,7 @@
 #import "LeftCategoryController.h"
 #import "LeftCategoryModel.h"
 #import "ContentController.h"
-
+#import "RightContentModel.h"
 
 #define MainScreenWidth [UIScreen mainScreen].bounds.size.width
 
@@ -29,17 +29,9 @@
     
     LeftCategoryController *leftCategoryVC = [[LeftCategoryController alloc]initWithStyle:UITableViewStylePlain];
     leftCategoryVC.view.frame = CGRectMake(0, 0, self.leftWidth,MainScreenHight);
+
     
-    NSMutableArray *itemArry = [NSMutableArray array];
-  NSArray *dataArry = @[@"情趣",@"电器",@"衣服",@"吃的",@"左爱",@"情趣",@"电器",@"衣服",@"吃的",@"左爱",@"情趣",@"电器",@"衣服",@"吃的",@"左爱",@"衣服",@"吃的",@"左爱",@"情趣",@"电器",@"衣服",@"吃的"];
-     for ( int i=0; i<dataArry.count; i++) {
-    LeftCategoryModel *letfItem = [[LeftCategoryModel alloc]init];
-         letfItem.name = dataArry[i];
-         [itemArry addObject:letfItem];
-         
-     }
-    
-    leftCategoryVC.leftCategoryArray = itemArry;
+    leftCategoryVC.leftCategoryArray = [self getLeftListData];
     
     [self.view addSubview:leftCategoryVC.view];
     [self addChildViewController:leftCategoryVC];
@@ -52,5 +44,18 @@
 }
 
 
+- (NSMutableArray*)getLeftListData
+{
+
+    NSMutableArray *itemArry = [NSMutableArray array];
+    NSArray *dataArry = @[@"母婴",@"云花卉",@"个人护理",@"时尚眼镜",@"运动馆",@"生鲜/美食",@"电器商城",@"专业药房",@"中药滋补",@"跨境购买"];
+    for ( int i=0; i<dataArry.count; i++) {
+        LeftCategoryModel *letfItem = [[LeftCategoryModel alloc]init];
+        letfItem.name = dataArry[i];
+        [itemArry addObject:letfItem];
+        
+    }
+    return itemArry;
+}
 
 @end

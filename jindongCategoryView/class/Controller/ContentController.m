@@ -9,6 +9,9 @@
 #import "ContentController.h"
 #import "RightCententCell.h"
 #import "RightContentModel.h"
+#import "UIImageView+WebCache.h"
+
+#define categoryimage   @"http://m.hxyxt.com/image/Category1/"
 
 #define MainScreenWidth [UIScreen mainScreen].bounds.size.width
 #define MainScreenHight [UIScreen mainScreen].bounds.size.height
@@ -20,7 +23,7 @@
 /** 最后展示在页面的数据 */
 @property (strong, nonatomic) NSMutableArray *listArray;
 
-
+@property (copy, nonatomic)NSMutableString* headerImageStr;
 @end
 
 @implementation ContentController
@@ -34,101 +37,136 @@ static NSString * const reuseIdentifier = @"Cell";
  */
 - (id)init
 {
+    
     // UICollectionViewFlowLayout的初始化
-//    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-//    layout.itemSize = CGSizeMake(80, 80);
-//    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
-//    layout.minimumInteritemSpacing = 20;
-//    layout.minimumLineSpacing = 20;
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(80, 80);
+    layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
+    layout.minimumInteritemSpacing = 20;
+    layout.minimumLineSpacing = 20;
     
-    
-    
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tode:) name:@"categorychange" object:nil];
     /**
-     2、在Controller.m创建UICollectionView。需要使用UICollectionViewFlowLayout来创建，使用方法- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout;如果只用普通的init方法，是实现不了的。
+    在Controller.m创建UICollectionView。需要使用UICollectionViewFlowLayout来创建，使用方法- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(UICollectionViewLayout *)layout;如果只用普通的init方法，是实现不了的。
      */
     
-    float height = 0;//顶部高度
-    UICollectionViewFlowLayout *flowLayout=[[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-    flowLayout.headerReferenceSize = CGSizeMake(fDeviceWidth, height+10);//头部
-//    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width,self.frame.size.height) collectionViewLayout:flowLayout];
-    //self.collectionView.backgroundColor=blackgroundColor;
-    
-//    // 3、代理授权并添加至视图。
-//    self.collectionView.delegate = self;
-//    self.collectionView.dataSource = self;
-  //  [self addSubview:self.collectionView];
-    
-    
-    
-    
-    //注册cell和ReusableView（相当于头部）1、注册CollectionViewCell，添加cell需要在这里实现。方法：- (void)registerClass:(Class)cellClass forCellWithReuseIdentifier:(NSString *)identifier;
-//    [self.collectionView registerClass:[YXTCollectionCell class] forCellWithReuseIdentifier:@"cell"];
-//    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ReusableView"];
-    
-    
-    
-    
-    
-    return [self initWithCollectionViewLayout:flowLayout];
+    return [self initWithCollectionViewLayout:layout];
 }
 
 
 #pragma mark - 数据相关
 
-- (NSMutableArray *)goodsListArray
+- (NSMutableArray *)listArray
 {
+    /*
+{
+categoryimg
+chinesemedicine
+cloudflower
+cross-bordershopping
+electronicsmall
+fashionglasses
+infantmom
+personalcare
+professionalpharmacy
+rawfood
+sportspavilion
+ http://m.hxyxt.com/image/Category1/infantmom/04.png
+//http://m.hxyxt.com/image/Category1/personalcare/04.png
+     头部图片
+     http://m.hxyxt.com/image/Category1/categoryimg/01.jpg
+  }
+  */
     if (!_listArray) {
-        self.listArray = [NSMutableArray array];
-    }
+   
+ self.listArray = [self getRightAllIamgeListDatawithCateNumber:0];
+  
+        
+        }
     return _listArray;
 }
+
+//右边所有数据获取
+- (NSMutableArray*) getRightAllIamgeListDatawithCateNumber:(int)number
+{
+    
+    NSArray *groupIamge = @[@"infantmom",@"cloudflower",@"personalcare",@"fashionglasses",@"sportspavilion",@"rawfood",@"electronicsmall",@"professionalpharmacy",@"chinesemedicine",@"cross-bordershopping"];
+
+//    
+//    NSMutableArray *header = [NSMutableArray array];
+//    NSMutableString *headerImageStr =nil;
+//    for (int x=0; x<9; x++) {
+//            headerImageStr = [NSMutableString stringWithFormat:@"categoryimg/0%d.png",x];
+//       
+//        [header addObject:headerImageStr];
+//    }
+//    
+    
+    
+    
+    NSMutableString *name = groupIamge[number];
+    //一组的图片
+     NSMutableArray *oneGroapItem =[NSMutableArray array];
+    NSMutableString *imageStr = nil;
+    for (int i=1; i<=12; i++) {
+        if (i>9) {
+        imageStr = [NSMutableString stringWithFormat:@"%@/%d.png",name,i];
+        }else{
+            imageStr = [NSMutableString stringWithFormat:@"%@/0%d.png",name,i];
+        }
+    RightContentModel*model = [[RightContentModel alloc]init];
+    model.name = @"我去";
+    model.imageStr =imageStr;
+    [oneGroapItem addObject: model];
+       
+    }
+    
+    
+    
+    return  oneGroapItem;
+}
+
+
+//点击左边的，右边就改变
+-(void)tode:(NSNotification*)notification{
+    //每个分类里的图片
+    NSMutableString *nuber= [NSMutableString stringWithFormat:@"%@",notification.userInfo[@"categoryRow"]];
+    int i =[nuber intValue];
+        //头部图片地址
+     self.headerImageStr = [NSMutableString stringWithFormat:@"http://m.hxyxt.com/image/Category1/categoryimg/0%d.jpg",i+1];
+    
+    self.listArray = [self getRightAllIamgeListDatawithCateNumber:i];
+    [self.collectionView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
-        /**
-     右边的视图
-     */
+    
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    // Register cell classes
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
-  
-    // Do any additional setup after loading the view.
+
+     [self.collectionView registerClass:[RightCententCell class] forCellWithReuseIdentifier:@"cell"];
+    
+    [self.collectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ReusableView"];
+      
 }
 
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
-    return 6;
+    return 1;
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
-    return 7;
+    return  self.listArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-
-   // static NSString *identify = @"cell";
-//    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
-//    cell.backgroundColor = [UIColor redColor];
 
     static NSString *identify = @"cell";
     RightCententCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
@@ -137,7 +175,7 @@ static NSString * const reuseIdentifier = @"Cell";
         NSLog(@"无法创建CollectionViewCell时打印，自定义的cell就不可能进来了。");
     }
     
-    RightContentModel*rightContentModel = self.listArray[indexPath.row];
+    RightContentModel*rightContentModel =self.listArray[indexPath.row];
     //设置数据源
     cell.rightContentModel =rightContentModel;
     
@@ -187,40 +225,43 @@ static NSString * const reuseIdentifier = @"Cell";
     
 }
 
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
-//
-//{
-//    
-//    UICollectionReusableView *reusableview = nil;
-//    
-//    if (kind == UICollectionElementKindSectionHeader){
-//        
-//        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"headerview" forIndexPath:indexPath];
-//        
-//        
-//        headerView.backgroundColor= [UIColor blueColor];
-//        
-//       // UIImage *headerImage = [UIImage imageNamed:@"header_banner.png"];
-//        
-//      //  headerView.b = headerImage;
-//        
-//        reusableview = headerView;
-//        
-//    }
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+
+{
+    
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader){
+        
+        UICollectionReusableView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"ReusableView" forIndexPath:indexPath];
+        
+        UIImageView*dc =[[UIImageView alloc]init];
+        dc.frame = headerView.bounds;
+        
+        if (!self.headerImageStr) {
+           self.headerImageStr = [NSMutableString stringWithFormat:@"http://m.hxyxt.com/image/Category1/categoryimg/0%d.jpg",1];
+        }
+       [dc sd_setImageWithURL:[NSURL URLWithString:self.headerImageStr]];
+        [headerView addSubview:dc];
+    
+        
+        reusableview = headerView;
+        
+    }
 
 //    if (kind == UICollectionElementKindSectionFooter){
 //        
 //        UICollectionReusableView *footerview = [collectionView dequeueResuableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"FooterView" forIndexPath:indexPath];
-//        
+    
 //        reusableview = footerview;
 //        
 //    }
     
-//    return reusableview;
-//    
-//    
-//    
-//}
+    return reusableview;
+    
+    
+    
+}
 //定义每个UICollectionView 纵向的间距
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 0;
@@ -263,5 +304,8 @@ static NSString * const reuseIdentifier = @"Cell";
 	
 }
 */
+
+
+
 
 @end

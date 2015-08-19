@@ -8,6 +8,7 @@
 
 #import "LeftCategoryCell.h"
 #import "LeftCategoryModel.h"
+
 @implementation LeftCategoryCell
 
 
@@ -51,12 +52,12 @@
 //cell样式
 - (void)setupSubviews{
     
-    self.backgroundColor = [UIColor brownColor];
-    self.bgselectView.backgroundColor =[UIColor whiteColor];
+    self.backgroundColor = [UIColor whiteColor];
+    self.bgselectView.backgroundColor =[UIColor colorWithRed:87/255.0 green:155/255.0 blue:193/255.0 alpha:1];
     self.selectedBackgroundView = self.bgselectView;
     self.titleLable.textAlignment = NSTextAlignmentCenter;
    
-   
+    //self.titleLable.font = [UIFont systemFontOfSize:19.0];
     
     }
       
@@ -81,7 +82,7 @@
     if (leftItem.isSelected==NO) {
         self.titleLable.textColor = [UIColor blackColor];
     }else{
-        self.titleLable.textColor = [UIColor redColor];
+        self.titleLable.textColor = [UIColor whiteColor];
     }
 
 }

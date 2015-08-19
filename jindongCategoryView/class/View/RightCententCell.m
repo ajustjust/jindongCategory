@@ -8,6 +8,9 @@
 
 #import "RightCententCell.h"
 #import "RightContentModel.h"
+#import "UIImageView+WebCache.h"
+
+ #define categoryimage   @"http://m.hxyxt.com/image/Category1/"
 @implementation RightCententCell
 
 
@@ -25,7 +28,7 @@
          图片
          */
         self.imgView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetWidth(self.frame))];
-        self.imgView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+       // self.imgView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         [self addSubview:self.imgView];
         
 //        /**
@@ -51,13 +54,14 @@
 
 -(void)setRightContentModel:(RightContentModel *)rightContentModel
 {
+   
     _rightContentModel = rightContentModel;
     self.nameLabel.text =rightContentModel.name;
-    NSString *imageStr = rightContentModel.imageStr;
-    self.imgView.image =[UIImage imageNamed:imageStr];
+    NSString *imagefeeder = rightContentModel.imageStr;
+    NSString *imageStr =[NSString stringWithFormat:@"%@%@",categoryimage,imagefeeder];
     
+    [ self.imgView sd_setImageWithURL:[NSURL URLWithString:imageStr]];
+   // NSLog(@"imageStr是--%@",imageStr);
 }
-
-
 
 @end
