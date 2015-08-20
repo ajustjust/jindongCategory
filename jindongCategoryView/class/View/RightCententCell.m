@@ -59,6 +59,7 @@
     self.nameLabel.text =rightContentModel.name;
     NSString *imagefeeder = rightContentModel.imageStr;
     NSString *imageStr =[NSString stringWithFormat:@"%@%@",categoryimage,imagefeeder];
+    NSLog(@"imageStr是--%@",imageStr);
     
     [ self.imgView sd_setImageWithURL:[NSURL URLWithString:imageStr]];
    // NSLog(@"imageStr是--%@",imageStr);

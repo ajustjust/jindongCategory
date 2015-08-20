@@ -9,6 +9,8 @@
 #import "LeftCategoryCell.h"
 #import "LeftCategoryModel.h"
 
+#define RGB(r,g,b)  [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
 @implementation LeftCategoryCell
 
 
@@ -19,6 +21,7 @@
     LeftCategoryCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[LeftCategoryCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ID];
+       
     }
     return cell;
 }
@@ -52,12 +55,10 @@
 //cell样式
 - (void)setupSubviews{
     
-    self.backgroundColor = [UIColor whiteColor];
-    self.bgselectView.backgroundColor =[UIColor colorWithRed:87/255.0 green:155/255.0 blue:193/255.0 alpha:1];
+    self.backgroundColor = RGB(242, 242, 242);
+    self.bgselectView.backgroundColor = RGB(87, 155, 193);
     self.selectedBackgroundView = self.bgselectView;
     self.titleLable.textAlignment = NSTextAlignmentCenter;
-   
-    //self.titleLable.font = [UIFont systemFontOfSize:19.0];
     
     }
       

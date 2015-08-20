@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1A9C285E1B8480060046227E /* RightContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9C285D1B8480060046227E /* RightContentModel.m */; };
 		1A9C28611B8482310046227E /* RightCententCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A9C28601B8482310046227E /* RightCententCell.m */; };
-		FC103C101B84A6120033BCF9 /* 07.png in Resources */ = {isa = PBXBuildFile; fileRef = FC103C0F1B84A6120033BCF9 /* 07.png */; };
 		FC103C661B84C8D10033BCF9 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FC103C461B84C8D10033BCF9 /* MKAnnotationView+WebCache.m */; };
 		FC103C671B84C8D10033BCF9 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = FC103C481B84C8D10033BCF9 /* NSData+ImageContentType.m */; };
 		FC103C681B84C8D10033BCF9 /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FC103C4A1B84C8D10033BCF9 /* SDImageCache.m */; };
@@ -54,7 +53,6 @@
 		1A9C285D1B8480060046227E /* RightContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightContentModel.m; sourceTree = "<group>"; };
 		1A9C285F1B8482310046227E /* RightCententCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightCententCell.h; sourceTree = "<group>"; };
 		1A9C28601B8482310046227E /* RightCententCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightCententCell.m; sourceTree = "<group>"; };
-		FC103C0F1B84A6120033BCF9 /* 07.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 07.png; sourceTree = "<group>"; };
 		FC103C451B84C8D10033BCF9 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		FC103C461B84C8D10033BCF9 /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		FC103C471B84C8D10033BCF9 /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -204,7 +202,6 @@
 				FC4A66721B7F7E8900CEE2FB /* ViewController.h */,
 				FC4A66731B7F7E8900CEE2FB /* ViewController.m */,
 				FC4A66751B7F7E8900CEE2FB /* Main.storyboard */,
-				FC103C0F1B84A6120033BCF9 /* 07.png */,
 				FC4A66781B7F7E8900CEE2FB /* Images.xcassets */,
 				FC4A667A1B7F7E8900CEE2FB /* LaunchScreen.xib */,
 				FC4A666B1B7F7E8900CEE2FB /* Supporting Files */,
@@ -362,7 +359,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC103C101B84A6120033BCF9 /* 07.png in Resources */,
 				FC4A66771B7F7E8900CEE2FB /* Main.storyboard in Resources */,
 				FC4A667C1B7F7E8900CEE2FB /* LaunchScreen.xib in Resources */,
 				FC4A66791B7F7E8900CEE2FB /* Images.xcassets in Resources */,

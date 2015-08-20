@@ -16,7 +16,6 @@
 #define MainScreenWidth [UIScreen mainScreen].bounds.size.width
 #define MainScreenHight [UIScreen mainScreen].bounds.size.height
 
-#define fDeviceWidth ([UIScreen mainScreen].bounds.size.width)
 #define fDeviceHeight ([UIScreen mainScreen].bounds.size.height-StatusBarHeight)
 
 @interface ContentController ()
@@ -74,7 +73,7 @@ sportspavilion
  http://m.hxyxt.com/image/Category1/infantmom/04.png
 //http://m.hxyxt.com/image/Category1/personalcare/04.png
      头部图片
-     http://m.hxyxt.com/image/Category1/categoryimg/01.jpg
+ http://m.hxyxt.com/image/Category1/categoryimg/01.jpg
   }
   */
     if (!_listArray) {
@@ -133,8 +132,14 @@ sportspavilion
     NSMutableString *nuber= [NSMutableString stringWithFormat:@"%@",notification.userInfo[@"categoryRow"]];
     int i =[nuber intValue];
         //头部图片地址
-     self.headerImageStr = [NSMutableString stringWithFormat:@"http://m.hxyxt.com/image/Category1/categoryimg/0%d.jpg",i+1];
     
+    
+    if (i>=9) {
+        self.headerImageStr = [NSMutableString stringWithFormat:@"http://m.hxyxt.com/image/Category1/categoryimg/%d.jpg",i+1];
+   
+    }else{
+     self.headerImageStr = [NSMutableString stringWithFormat:@"http://m.hxyxt.com/image/Category1/categoryimg/0%d.jpg",i+1];
+    }
     self.listArray = [self getRightAllIamgeListDatawithCateNumber:i];
     [self.collectionView reloadData];
 }
@@ -195,7 +200,7 @@ sportspavilion
 //设置顶部的大小
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
     
-    CGSize size={0,70};
+    CGSize size={0,90};
     
     return size;
     

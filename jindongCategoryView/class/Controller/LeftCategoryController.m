@@ -9,6 +9,9 @@
 #import "LeftCategoryController.h"
 #import "LeftCategoryCell.h"
 #import "LeftCategoryModel.h"
+
+
+
 @interface LeftCategoryController ()
 
 @end
@@ -17,9 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    self.tableView.rowHeight = 70;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    self.tableView.rowHeight = 60;
    }
 
 
@@ -96,9 +99,9 @@
     return YES;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    return 70;
-}
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    return 70;
+//}
 
 @end
